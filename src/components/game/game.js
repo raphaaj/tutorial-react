@@ -38,7 +38,7 @@ export default function Game() {
     const desc = move ? `Go to move #${move} (${step.col}, ${step.row})` : 'Go to game start';
 
     return (
-      <li key={move}>
+      <li key={move} className={`${move === stepNumber ? 'current' : ''}`}>
         <button onClick={() => jumpToStep(move)}>{desc}</button>
       </li>
     );
