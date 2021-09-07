@@ -4,7 +4,7 @@ import './index.css';
 
 function Square(props) {
   return (
-    <button className="square" onClick={props.onClick}>
+    <button className={`square ${props.value ? '' : 'selectable'}`} onClick={props.onClick}>
       {props.value}
     </button>
   );
@@ -40,7 +40,7 @@ class Board extends React.Component {
 
   render() {
     return (
-      <div>
+      <>
         <div className="board-row">
           {this.renderSquare(0)}
           {this.renderSquare(1)}
@@ -56,7 +56,7 @@ class Board extends React.Component {
           {this.renderSquare(7)}
           {this.renderSquare(8)}
         </div>
-      </div>
+      </>
     );
   }
 }
@@ -123,8 +123,8 @@ class Game extends React.Component {
           <Board squares={current.squares} onClick={(i) => this.handleClick(i)} />
         </div>
         <div className="game-info">
-          <div>{status}</div>
-          <ol>{moves}</ol>
+          <div className="status">{status}</div>
+          <ol className="moves">{moves}</ol>
         </div>
       </div>
     );
