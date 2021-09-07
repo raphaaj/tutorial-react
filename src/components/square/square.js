@@ -9,4 +9,8 @@ function Square(props) {
   );
 }
 
-export default Square;
+function areEqual(prevProps, nextProps) {
+  return prevProps.value === nextProps.value && prevProps.onClick === nextProps.onClick;
+}
+
+export default React.memo(Square, areEqual);
