@@ -32,7 +32,7 @@ function Board(props) {
     const boardRowSquares = [];
 
     for (let j = 0; j < 3; j++) {
-      const squareIndex = i + 3 * j;
+      const squareIndex = j + 3 * i;
 
       boardRowSquares.push(
         <Square

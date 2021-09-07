@@ -5,7 +5,9 @@ import './game.css';
 export default function Game() {
   const [stepNumber, setStepNumber] = React.useState(0);
   const [xIsNext, setXIsNext] = React.useState(true);
-  const [history, setHistory] = React.useState([{ squares: Array(9).fill(null), winner: null }]);
+  const [history, setHistory] = React.useState([
+    { squares: Array(9).fill(null), winner: null, row: null, col: null },
+  ]);
 
   const current = history[stepNumber];
 
@@ -19,7 +21,10 @@ export default function Game() {
     squares[i] = xIsNext ? 'X' : 'O';
     const winner = calculateWinner(squares);
 
-    setHistory(currentHistory.concat([{ squares, winner }]));
+    const col = i % 3;
+    const row = Math.trunc(i / 3);
+
+    setHistory(currentHistory.concat([{ squares, winner, row, col }]));
     setStepNumber(currentHistory.length);
     setXIsNext(!xIsNext);
   }
@@ -30,7 +35,7 @@ export default function Game() {
   }
 
   const moves = history.map((step, move) => {
-    const desc = move ? `Go to move #${move}` : 'Go to game start';
+    const desc = move ? `Go to move #${move} (${step.col}, ${step.row})` : 'Go to game start';
 
     return (
       <li key={move}>
