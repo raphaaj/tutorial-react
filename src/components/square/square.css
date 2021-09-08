@@ -11,6 +11,10 @@
   box-shadow: 0 0 1rem rgba(0, 0, 0, .1);
 }
 
+.square.winning-square {
+  box-shadow: 0 0 1rem rgba(0, 0, 0, .1), inset 0 0 10px rgb(28, 224, 61);
+}
+
 .square:focus {
   outline: none;
 }

@@ -18,7 +18,7 @@ export function calculateWinner(squares) {
     const [a, b, c] = line;
 
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
+      return { winner: squares[a], winningSquares: line };
     }
   }
 
@@ -26,6 +26,10 @@ export function calculateWinner(squares) {
 }
 
 function Board(props) {
+  let winningSquares = [];
+  const winningResult = calculateWinner(props.squares);
+  if (winningResult) winningSquares = winningResult.winningSquares;
+
   const boardRows = [];
 
   for (let i = 0; i < 3; i++) {
@@ -38,6 +42,8 @@ function Board(props) {
         <Square
           key={squareIndex}
           value={props.squares[squareIndex]}
+          isSelectable={!winningResult && !props.squares[squareIndex]}
+          isWinningSquare={winningSquares.indexOf(squareIndex) > -1}
           onClick={() => props.onClick(squareIndex)}
         />
       );

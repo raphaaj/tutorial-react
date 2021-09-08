@@ -19,7 +19,10 @@ export default function Game() {
     if (current.winner || squares[i]) return;
 
     squares[i] = xIsNext ? 'X' : 'O';
-    const winner = calculateWinner(squares);
+
+    let winner = null;
+    const winningResult = calculateWinner(squares);
+    if (winningResult) winner = winningResult.winner;
 
     const col = i % 3;
     const row = Math.trunc(i / 3);
