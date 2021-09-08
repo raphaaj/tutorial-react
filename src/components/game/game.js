@@ -50,6 +50,8 @@ export default function Game() {
   let status;
   if (current.winner) {
     status = `Winner: ${current.winner}`;
+  } else if (current.squares.indexOf(null) < 0) {
+    status = `Draw!`;
   } else {
     status = `Next player: ${xIsNext ? 'X' : 'O'}`;
   }
